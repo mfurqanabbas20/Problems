@@ -7,8 +7,6 @@ class queue{
 	int size;
 	int front;
 	int array[5];
-	
-	
 	public : queue(){
 		
 		size=5;
@@ -191,21 +189,21 @@ class queue{
 			
 
 
-cout<<"\nQueue elements";
-i=front;
-if(front<=rear)
-{
-while(i<=rear)
-cout<<array[i++];
-}
-else
-{
-while(i<=size-1)
-cout<<array[i++];
-i=0;
-while(i<=rear)
-cout<<array[i++];
-}
+				cout<<"\nQueue elements";
+				i=front;
+				if(front<=rear)
+				{
+				while(i<=rear)
+				cout<<array[i++];
+				}
+				else
+				{
+				while(i<=size-1)
+				cout<<array[i++];
+				i=0;
+				while(i<=rear)
+				cout<<array[i++];
+				}
 
   
 		

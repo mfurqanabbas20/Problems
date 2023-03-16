@@ -14,7 +14,6 @@ class Node
         this -> right = NULL;
     }
 };
-
 Node* CreateBST(Node* root, int data)
 {
     if(root == NULL)
@@ -51,46 +50,77 @@ bool SearchInBST(Node* root, int x)
     {
         return SearchInBST(root->right, x);
     }
-
-
-
-
-
-
-
-
 }
-
-void LevelOrderTraversal(Node* root)
+Node* minVal(Node* root)
 {
-    queue<Node*> q;
-    q.push(root);
-    q.push(NULL);
-    while(!q.empty())
+    Node* temp = root;
+    while(temp -> left != NULL)
     {
-        Node* temp = q.front();
-        q.pop();
-        if(temp == NULL)
+        temp = temp -> left;
+    }
+    return temp;
+}
+Node* maxVal(Node* root)
+{
+    Node* temp = root;
+    while(temp -> right != NULL)
+    {
+        temp = temp -> right;
+    }
+    return temp;
+}
+Node* DeleteFromBST(Node* root, int val)
+{
+    if(root == NULL)
+    {
+        return NULL;
+    }
+    if(root->data == val)
+    {
+        //0 child case
+        if(root->left == NULL && root->right == NULL)
         {
-            cout << endl;
-            if(!q.empty())
-            {
-                //queue still have some child nodes. 
-                q.push(NULL);
-            }
+            delete root;
+            return NULL;
         }
-        else 
+        //1 child case
+        //left child
+        if(root->left != NULL && root->right == NULL)
         {
-            cout << temp->data << " ";
-            if (temp->left)
-            {
-                q.push(temp->left);
-            }
-            if (temp->right)
-            {
-                q.push(temp->right);
-            }
-        } 
+            Node* temp = root -> left;
+            delete root;
+            return temp;
+        }
+
+        // right child 
+        if(root->left == NULL && root->right != NULL)
+        {
+            Node* temp = root -> right;
+            delete root;
+            return temp;
+        }
+        
+        //2 child case
+        if(root->left != NULL && root->right != NULL)
+        {
+            int mini = minVal(root->right) -> data;
+            root->data = mini;
+            root->right = DeleteFromBST(root->right, mini);
+            return root;
+        }
+
+    }
+    else if(root -> data > val)
+    {
+        //left part mei jao
+        root->left = DeleteFromBST(root->left, val);
+        return root;
+    }
+    else
+    {
+        //right part mei jao
+        root->right = DeleteFromBST(root->right, val);
+        return root;
     }
 }
 void takeInput(Node* &root)
@@ -108,12 +138,10 @@ void takeInput(Node* &root)
 int main()
 {
     Node* root = NULL;
+    cout << "Enter the data to create BST" << endl;
     takeInput(root);
-    cout << "Printing the Level Order Traversal " << endl;
-    //level order traversal
-    LevelOrderTraversal(root);
 
-
-
-    return 0;
+   cout << "Printing the BST" << endl;
+   DeleteFromBST(root, 10);
+   return 0;
 }

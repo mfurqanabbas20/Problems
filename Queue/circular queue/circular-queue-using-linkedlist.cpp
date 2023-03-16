@@ -5,11 +5,7 @@
 	class node{
 	    public:
 		int data;
-		node *next;
-		
-		
-		
-		
+		node *next;	
 	};
 	
 	
@@ -25,7 +21,7 @@
 			
 		
 				
-				node *temp=new node();
+			node *temp=new node();
 			temp->data=item;
 			temp->next=NULL;
 			
@@ -38,12 +34,9 @@
 			}
 			
 			else{
-				
 				rear->next=temp;
 				rear=temp;
 				rear->next=front;
-				
-				
 			}
 					
 		}

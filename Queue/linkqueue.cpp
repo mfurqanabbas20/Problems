@@ -22,7 +22,6 @@ class Queue
     {
         front = NULL;
         rear = NULL;
-
     }
     bool isEmpty()
     {
@@ -40,6 +39,7 @@ class Queue
         {
         front = node;
         rear = node;
+        return;
         }
         rear -> next = node;
         rear = node;
