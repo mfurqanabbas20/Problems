@@ -1,0 +1,139 @@
+/*
+-----------------------2ND ASSIGNMENT-----------------------------
+21011598-115
+21011598-074
+21011598-100
+21011598-104
+*/
+#include<iostream>
+#include<cstring>
+using namespace std;
+class conversion{
+	public:
+	int top;
+	char stack[100];
+	
+	conversion(){
+		
+		top=-1;
+	}
+	
+		public : void push(char ch){
+		
+			++top;
+			stack[top]=ch;	
+		}
+		public: char pop(){
+			
+			if (isempty()){
+				cout<<"empty";
+			}else{
+			//top ki value ko remove krny k liye
+			char c;
+			 c=stack[top];
+			 top=top-1;
+			 return c;
+		}}
+		public :int isempty(){
+		
+		if(top==-1){
+			return 1;	
+		}
+		
+		else{
+			
+			return 0;
+		}	
+	}
+	public: int topp(){
+		
+		char c;
+		c= stack[top];
+		return c;
+	}
+	public :int precedence(char symbol){ // set precedence
+		
+		switch(symbol){
+				case '^':
+				    return 3;
+				case '*':
+				case '/':
+					return 2;
+				case '+':
+				case '-':
+					return 1;
+				default: 
+				    return 0;}	
+		}
+};
+
+int main(){
+	//object of a class conversion
+	conversion s;
+	int i=0;
+	int j=0;
+	char infix[100];
+	char prefix[100];
+	char symbol,next;
+	cout<<"enter the expression ";
+	cin>>infix;
+		int len = strlen(infix);             //find length of string
+	   for(int j = 0; j < len/2; j++)   //swap each character
+	   {                             //   in first half
+	       char temp = infix[j];             //   with character
+	       infix[j] = infix[len-j-1];            //   in second half
+	       infix[len-j-1] = temp;
+	   }
+    while(infix[i]!='\0'){   // run loop until null value
+    	
+    	symbol=infix[i];
+    	
+    	switch(symbol){
+    		
+    		case ')':
+    			s.push(symbol);
+    			break;
+    		case '(':
+			    while((next=s.pop())!=')'){   // pop all characters until ( bracket ) pop stack k andar say hoga
+			    	prefix[j]=next;
+			    	j++;
+				}
+				break;
+				case '+':
+				case '-':
+				case '*':
+				case '/':
+				case '^':	
+				while(s.precedence(s.topp())>= s.precedence(symbol)) //check precedece til brackets
+				   prefix[j++]=s.pop();
+				   	s.push(symbol);
+				   	break;
+					
+    		default: 
+    		     prefix[j++]=symbol;
+    		   
+    		
+		}
+    	
+    i++;} 
+         while(!s.isempty()){       // display remaining elements in stack
+         	prefix[j++]=s.pop();
+		 }
+		 	int l = strlen(prefix);             //find length of string
+	   for(int j = 0; j < l/2; j++)   //swap each character
+	   {                             //   in first half
+	       char temp = prefix[j];             //   with character
+	       prefix[j] = prefix[l-j-1];            //   in second half
+	       prefix[l-j-1] = temp;
+	   }
+			int n=0;                    // display final results
+			while(prefix[n]!='\0'){
+				cout<<prefix[n];
+				n++;
+			}
+return 0;	
+}
+	
+	
+	
+
