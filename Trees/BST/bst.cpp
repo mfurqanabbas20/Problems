@@ -140,8 +140,10 @@ int main()
     Node* root = NULL;
     cout << "Enter the data to create BST" << endl;
     takeInput(root);
-
-   cout << "Printing the BST" << endl;
-   DeleteFromBST(root, 10);
+    if(SearchInBST(root, 39)){
+        cout << "Found";
+    }
+    else
+    cout << "Not Found";
    return 0;
 }

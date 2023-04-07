@@ -62,10 +62,6 @@ class queue{
 			array[front]=item;
 			cout<<"you have inserted"<<item<<"into dequeue at front";
 			
-		
-		
-			
-			
 		} else if(front==0){
 			
 			  front =size-1;
@@ -174,12 +170,6 @@ class queue{
 		}
 		
 	}
-	
-	
-	
-	
-	
-	
 	public: void display(){
 		int i;
 		if(isempty()){

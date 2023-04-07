@@ -1,12 +1,12 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
-void Insert(int* arr, int size, int data)
+void Insert(int *arr, int size, int data)
 {
-    //function to insert into the array
-    for(int i=0; i<size; i++){
-
+    // function to insert into the array
+    for (int i = 0; i < size; i++)
+    {
+        // code to be uploaded soon.
     }
-
 }
 int main()
 {

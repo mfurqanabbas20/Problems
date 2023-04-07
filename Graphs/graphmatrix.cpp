@@ -17,11 +17,11 @@ void addEdge(int u, int v){
 }
 int main()
 {
- //   int v;
+    int v =3;
     addEdge(1, 2);
     addEdge(2, 3);
     addEdge(3, 1);
-  //  displayMatrix(v);
+    displayMatrix(v);
 
     return 0;
 }
